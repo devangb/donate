@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+  </head>
+  <body>
+
+  <% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+        <%= User.find(current_user.id).reviews.count %> reviews
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <%= render 'shared/user_read_stats' %>
+      </section>
+      <div class="btn-group">
+      <button type="button" class="btn"><%= link_to "Books", books_path %></button>
+    
+      <%= link_to "Add a new Book", new_book_path, class: "btn" %>
+    
+    </div>
+      
+    </aside>
+     <div class="span8">
+      <h3>Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+
+  <%else %>
+
+  	<div class="center hero-unit">
+    	<h1>Donate</h1>
+    	<h2>Donated blood and organs database</h2>
+       
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>. Not you?
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+      <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+      <% end %>
+  
+    	
+    </div>
+
+    <%end%>
+  </body>
+</html>
