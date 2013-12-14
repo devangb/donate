@@ -10,11 +10,23 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name %></div>
+
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :mobile %><br />
+  <%= f.text_field :phone %></div>
+
+  <div><%= f.label :address %><br />
+  <%= f.text_field :address %></div>
+
+  <div><%= f.label :bloodgroup %><br />
+  <%= f.select :bloodgroup ,["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] %></div>
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>

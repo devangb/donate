@@ -10,26 +10,18 @@
     <aside class="span4">
       <section>
         <%= render 'shared/user_info' %>
-        <%= User.find(current_user.id).reviews.count %> reviews
+        
       </section>
       <section>
-        <%= render 'shared/stats' %>
+        
       </section>
       <section>
-        <%= render 'shared/user_read_stats' %>
+       
       </section>
-      <div class="btn-group">
-      <button type="button" class="btn"><%= link_to "Books", books_path %></button>
     
-      <%= link_to "Add a new Book", new_book_path, class: "btn" %>
-    
-    </div>
       
     </aside>
-     <div class="span8">
-      <h3>Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
+     
   </div>
 
   <%else %>
