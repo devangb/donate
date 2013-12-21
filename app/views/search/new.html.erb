@@ -1,0 +1,22 @@
+<% provide(:title, 'Search blood') %>
+<h1>Search blood</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+
+<%= form_for @search , :html => {:multipart => true} do |f| %>
+  
+
+	
+  <div><%= f.label :searchzip %><br />
+  <%= f.text_field :searchzip %></div>
+
+  <div><%= f.label :searchgroup %><br />
+  <%= f.select :searchgroup ,["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] %></div>
+  
+  <div><%= f.submit "Search", class: "btn btn-small btn-primary" %></div>
+<% end %>
+
+
+ </div>
+</div>

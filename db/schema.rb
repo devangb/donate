@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214082301) do
+ActiveRecord::Schema.define(version: 20131219030431) do
+
+  create_table "searches", force: true do |t|
+    t.string   "searchgroup"
+    t.string   "searchzip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +37,13 @@ ActiveRecord::Schema.define(version: 20131214082301) do
     t.string   "address"
     t.string   "bloodgroup"
     t.string   "name"
+    t.string   "zip"
+    t.boolean  "availability"
+    t.datetime "lastdonated"
+    t.integer  "age"
+    t.string   "city"
+    t.boolean  "admin"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

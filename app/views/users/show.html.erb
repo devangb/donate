@@ -1,0 +1,30 @@
+<% provide(:title, @user.name) %>
+<aside>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for_user @user %>
+        <%= link_to @user.name, @user%>
+        <% if current_user.admin? && !current_user?(@user) %>
+        | <%= link_to "delete", @user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </h1>  
+    </section>
+    <section>
+      <b>Age        :</b> <%= @user.age %> <br>
+      <b>Gender     :</b> <%= @user.gender %> <br>
+      <b>Bloodgroup :</b> <%= @user.bloodgroup %> <br>
+      <b>Mobile     :</b> <%= @user.phone %> <br>
+      <b>Address    :</b> <%= @user.address %> <br>
+      <b>City       :</b> <%= @user.city %> <br>
+    </section>
+  </div>
+  </aside>
+  <section>
+  <div class="span8">
+  	
+  </div>
+</section>
+</div>

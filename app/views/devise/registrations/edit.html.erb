@@ -13,6 +13,10 @@
   <div><%= f.label :name %><br />
   <%= f.text_field :name %></div>
 
+  <div><%= f.label :age %><br />
+  <%= f.number_field :age %></div>
+
+
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
@@ -24,6 +28,15 @@
 
   <div><%= f.label :address %><br />
   <%= f.text_field :address %></div>
+
+  <div><%= f.label :city %><br />
+  <%= f.text_field :city %></div>
+
+  <div><%= f.label :postal_code %><br />
+  <%= f.text_field :zip %></div>
+
+  <div><%= f.label :gender %><br />
+  <%= f.select :gender, ["Male", "Female"] %></div>
 
   <div><%= f.label :bloodgroup %><br />
   <%= f.select :bloodgroup ,["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] %></div>
