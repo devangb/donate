@@ -4,7 +4,7 @@
       <%= form_tag users_path, :method => 'get' do %>
       <p>
         <%= text_field_tag :search, params[:bloodsearch] %><br/>
-        <%= select_tag :group, params[:group], ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"] %>
+        <%= text_field_tag :group, params[:group] %>
         <%= submit_tag "Search" %><br/>
       </p>
       <% end %>
@@ -16,10 +16,15 @@
     <li>
       <%= gravatar_for_user user, size: 52 %>
       <%= link_to user.name, user %>
+      <% if signed_in? %>
+        
+     
       <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
                                   <% end %>
+
+      <% end %>
       <br>
       <b>Blood Group : <%= user.bloodgroup %></b>
       <br>

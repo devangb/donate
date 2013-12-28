@@ -1,17 +1,12 @@
 Donate::Application.routes.draw do
-  get "search/new"
-  get "search/show"
-  get "search/index"
-  get "search/update"
-  get "users/show"
-  get "users/index"
+  devise_for :hospitals
+  resources :hospitals
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   root  'static_pages#home'
   devise_for :users
   resources :users
-  resources :searches
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

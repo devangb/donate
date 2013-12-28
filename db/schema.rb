@@ -11,14 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219030431) do
+ActiveRecord::Schema.define(version: 20131225094449) do
 
-  create_table "searches", force: true do |t|
-    t.string   "searchgroup"
-    t.string   "searchzip"
+  create_table "hospitals", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "hospital_zip"
+    t.string   "hospital_address"
+    t.string   "hospital_name"
+    t.string   "doctor_incharge"
+    t.string   "hospital_city"
+    t.string   "hospital_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "hospitals", ["email"], name: "index_hospitals_on_email", unique: true
+  add_index "hospitals", ["reset_password_token"], name: "index_hospitals_on_reset_password_token", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
