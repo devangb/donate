@@ -1,0 +1,28 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+      
+      <%= form_tag users_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:bloodsearch] %><br/>
+        <%= text_field_tag :group, params[:group] %>
+        <%= submit_tag "Search" %><br/>
+      </p>
+      <% end %>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @hospitals.each do |hospital| %>
+    <li>
+      <%= gravatar_for_hospital hospital, size: 52 %>
+      <%= link_to hospital.hospital_name, hospital %>
+      <% if current_hospital.admin? && !current_hospital?(user) %>
+    | <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
