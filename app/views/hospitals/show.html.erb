@@ -1,2 +1,29 @@
-<h1>Hospitals#show</h1>
-<p>Find me in app/views/hospitals/show.html.erb</p>
+<% provide(:title, @hospital.hospital_name) %>
+<aside>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for_hospital @hospital %>
+        <%= link_to @hospital.hospital_name, @hospital%>
+        <% if signed_in? %>
+        <% if current_hospital.admin? && !current_hospital?(@hospital) %>
+        | <%= link_to "delete", @hospital, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+        <% end %>
+      </h1>  
+    </section>
+    <section>
+      <b>Contact    :</b> <%= @hospital.hospital_phone %> <br>
+      <b>Address    :</b> <%= @hospital.hospital_address %> <br>
+      <b>City       :</b> <%= @hospital.hospitalcity %> <br>
+    </section>
+  </div>
+  </aside>
+  <section>
+  <div class="span8">
+  	
+  </div>
+</section>
+</div>

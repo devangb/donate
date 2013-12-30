@@ -9,6 +9,7 @@
 
   <% if signed_in? %>
   <div class="row">
+    <% if user_signed_in? %>
     <aside class="span4">
       <section>
         <%= render 'shared/user_info' %>
@@ -23,9 +24,33 @@
     
       
     </aside>
+
+    <% end %>
+
+
+   <% if hospital_signed_in? %>
+   <aside class="span4">
+      <section>
+        <%= render 'shared/hospital_info' %>
+        
+      </section>
+      <section>
+        
+      </section>
+      <section>
+       
+      </section>
+    
+      
+    </aside>
+
+     
+   <% end %>
      
      
   </div>
+
+
 
   <%else %>
 
@@ -36,8 +61,13 @@
       <% if user_signed_in? %>
         Signed in as <%= current_user.email %>. Not you?
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% elsif hospital_signed_in? %>
+        Signed in as <%= current_hospital.email %>. Not you?
+      <%= link_to "Sign out", destroy_hospital_session_path, :method => :delete %>
       <% else %>
-      <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+      <%= link_to "Donor Sign up", new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Hospital Sign up", new_hospital_registration_path, class: "btn btn-danger" %>
+
       <% end %>
       
   

@@ -1,6 +1,15 @@
 Donate::Application.routes.draw do
+  get "banked_blood/create"
+  get "banked_blood/update"
+  get "banked_blood/destroy"
   devise_for :hospitals
-  resources :hospitals
+  resources :hospitals do
+    member do
+      post :banked_blood
+      get :banked_blood
+    end
+  end
+  resources :banked_blood
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'

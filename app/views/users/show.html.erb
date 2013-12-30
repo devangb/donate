@@ -6,10 +6,12 @@
       <h1>
         <%= gravatar_for_user @user %>
         <%= link_to @user.name, @user%>
+        <% if signed_in? %>
         <% if current_user.admin? && !current_user?(@user) %>
         | <%= link_to "delete", @user, method: :delete,
                                   data: { confirm: "You sure?" } %>
                                   <% end %>
+        <% end %>
       </h1>  
     </section>
     <section>

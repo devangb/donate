@@ -1,0 +1,9 @@
+<%= form_for(@banked_blood) do |f|  %>
+
+<div class="blood">
+	<%= f.text_field :donor, placeholder: "Donor Name" %>
+	<%= f.text_field :bloodgroup, placeholder: "Bloodgroup" %>
+	<%= f.text_field :donated_to, placeholder: "Donated to" %>
+</div>
+<%= f.submit "Add", class: "btn btn-danger" %>
+<% end %>
