@@ -1,21 +1,27 @@
 Donate::Application.routes.draw do
-  get "banked_blood/create"
-  get "banked_blood/update"
-  get "banked_blood/destroy"
+  
   devise_for :hospitals
-  resources :hospitals do
-    member do
-      post :banked_blood
-      get :banked_blood
+  devise_for :users
+  resources :users
+  
+  resources :hospitals
+  resources :banked_bloods
+  resources :hospitals, :users do
+    collection do
+      resources :banked_bloods, :only => [:create, :update, :destroy]
     end
   end
-  resources :banked_blood
+  resources :kidneys
+  resources :hospitals, :users do
+    collection do
+      resources :kidneys, :only => [:create, :update, :destroy]
+    end
+  end
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   root  'static_pages#home'
-  devise_for :users
-  resources :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,6 +5,7 @@ class CreateBankedBloods < ActiveRecord::Migration
       t.string :bloodgroup
       t.string :donated_to
       t.datetime :date
+      t.references :hospital, index: true
 
       t.timestamps
     end

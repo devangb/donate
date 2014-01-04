@@ -4,29 +4,37 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for_user @user %>
-        <%= link_to @user.name, @user%>
-        <% if signed_in? %>
+        <% if hospital_signed_in? %>
+        <%= link_to @user.name %><br>
+        </h1>
+        <%= @user.zip %>
+        <% else %>
+        </h1>
+        <%= link_to @user.zip, @user%>
+        <% end %>
+        <% if user_signed_in? %>
         <% if current_user.admin? && !current_user?(@user) %>
         | <%= link_to "delete", @user, method: :delete,
                                   data: { confirm: "You sure?" } %>
                                   <% end %>
         <% end %>
-      </h1>  
+        
     </section>
     <section>
+      <b>Verification:</v> <%= @user.verification %><br>
       <b>Age        :</b> <%= @user.age %> <br>
       <b>Gender     :</b> <%= @user.gender %> <br>
       <b>Bloodgroup :</b> <%= @user.bloodgroup %> <br>
+      <% if hospital_signed_in? || current_user?(@user) %>
       <b>Mobile     :</b> <%= @user.phone %> <br>
       <b>Address    :</b> <%= @user.address %> <br>
       <b>City       :</b> <%= @user.city %> <br>
+      <% end %>
     </section>
   </div>
   </aside>
   <section>
   <div class="span8">
-  	
   </div>
 </section>
 </div>

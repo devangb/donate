@@ -10,39 +10,88 @@
   <% if signed_in? %>
   <div class="row">
     <% if user_signed_in? %>
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-        
-      </section>
-      <section>
-        
-      </section>
-      <section>
-       
-      </section>
-    
-      
-    </aside>
+    <section>
+      <h1>
+        <% if hospital_signed_in? %>
+        <%= link_to @user.name %>
+        <% end %>
+        <%= link_to @user.zip, @user%>
+        <% if signed_in? %>
+        <% if current_user.admin? && !current_user?(@user) %>
+        | <%= link_to "delete", @user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+        <% end %>
+      </h1>  
+    </section>
+    <section>
+      <b>Age        :</b> <%= @user.age %> <br>
+      <b>Gender     :</b> <%= @user.gender %> <br>
+      <b>Bloodgroup :</b> <%= @user.bloodgroup %> <br>
+      <% if hospital_signed_in? || current_user?(@user) %>
+      <b>Mobile     :</b> <%= @user.phone %> <br>
+      <b>Address    :</b> <%= @user.address %> <br>
+      <b>City       :</b> <%= @user.city %> <br>
+      <% end %>
+    </section>
 
     <% end %>
 
 
    <% if hospital_signed_in? %>
-   <aside class="span4">
-      <section>
-        <%= render 'shared/hospital_info' %>
+     <aside class="span4">
+    <section>
+      <h1>
         
-      </section>
-      <section>
-        
-      </section>
-      <section>
-       
-      </section>
-    
-      
-    </aside>
+        <%= link_to @hospital.hospital_name, @hospital%>
+        <% if signed_in? %>
+        <% if current_hospital.admin? && !current_hospital?(@hospital) %>
+        | <%= link_to "delete", @hospital, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+        <% end %>
+      </h1>  
+    </section>
+    <section>
+      <b>Doctor Incharge       :</b> <%= @hospital.doctor_incharge %> <br>
+      <b>Contact               :</b> <%= @hospital.hospital_phone %> <br>
+      <b>Address               :</b> <%= @hospital.hospital_address %> <br>
+      <b>City                  :</b> <%= @hospital.hospital_city %> <br>
+      <b>Postal code           :</b> <%= @hospital.hospital_zip %> <br>
+    </section>
+  </aside>
+<div class="span4">
+  <%= will_paginate @blooddonations %>
+Blood: 
+<ul class="users">
+  <% @blooddonations.each do |blooddonation| %>
+    <li>
+      <b>Postal code: </b> <%= blooddonation.hospital.hospital_zip %><br> 
+      <b>Donor:</b>  <%= blooddonation.donor %><br>
+      <b>Bloodgroup:</b>  <%= blooddonation.bloodgroup %><br>
+      <b>Donated to:</b>  <%= blooddonation.donated_to %><br>
+    </li>
+  <% end %>
+</ul>
+</div>
+<%= will_paginate @blooddonations %>
+   <div>
+  <%= will_paginate @kidneydonations %>
+Kidney: 
+<ul class="users">
+  <% @kidneydonations.each do |kidneydonation| %>
+    <li>
+      <b>Postal code: </b> <%= kidneydonation.hospital.hospital_zip %> <br>
+      <b>Donor:</b>  <%= kidneydonation.kidneydonor %><br>
+      <b>Bloodgroup:</b>  <%= kidneydonation.kidneybloodgroup %><br>
+      <b>Donated to:</b>  <%= kidneydonation.kidneydonated_to %><br>
+      <b>Bonemarrow:</b>  <%= kidneydonation.kidneybonemarrow %><br>
+      <b>Tissue type:</b>  <%= kidneydonation.kidneytissue_type %><br>
+    </li>
+  <% end %>
+</ul>
+</div>
+<%= will_paginate @kidneydonations %>
 
      
    <% end %>

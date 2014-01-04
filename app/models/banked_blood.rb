@@ -1,4 +1,3 @@
 class BankedBlood < ActiveRecord::Base
-
-	attr_accessible :donor, :bloodgroup, :donated_to, :date
+  belongs_to :hospital
 end

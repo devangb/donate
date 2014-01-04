@@ -5,11 +5,15 @@ class Hospital < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :hospital_zip, :hospital_address, :hospital_name, :doctor_incharge,
-				  :hospital_city, :hospital_phone, :email, :password
+				  :hospital_city, :hospital_phone, :email, :password, :donor, :donated_to, :bloodgroup, :date,
+          :kidneydonor, :kidneydonated_to, :kidneybloodgroup, :kidneybonemarrow, :kidney_date, :kidneytissue_type
 
-   def self.search(search, group)
+  has_many :banked_bloods
+  has_many :kidneys
+
+   def self.search(search)
    	if search
-   		find(:all, :conditions => ['zip LIKE ? AND bloodgroup LIKE ?', "%#{search}%", "%#{group}%"])
+   		find(:all, :conditions => ['hospital_zip LIKE ?', "%#{search}%"])
 
    	else
    		find(:all)

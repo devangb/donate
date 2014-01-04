@@ -3,7 +3,7 @@
       
       <%= form_tag users_path, :method => 'get' do %>
       <p>
-        <%= text_field_tag :search, params[:bloodsearch] %><br/>
+        <%= text_field_tag :search, params[:bloodsearch], placeholder: "ZIP" %><br/>
         <%= text_field_tag :group, params[:group] %>
         <%= submit_tag "Search" %><br/>
       </p>
@@ -14,9 +14,9 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <%= gravatar_for_user user, size: 52 %>
-      <%= link_to user.name, user %>
-      <% if signed_in? %>
+      
+      <%= link_to user.zip, user %>
+      <% if user_signed_in? %>
         
      
       <% if current_user.admin? && !current_user?(user) %>
@@ -26,9 +26,11 @@
 
       <% end %>
       <br>
+      <b>Verification : <%= user.verification %>
+      <br>
       <b>Blood Group : <%= user.bloodgroup %></b>
       <br>
-      <b>Postal Code : <%= user.zip %></b>
+      <b>Age : <%= user.age %></b>
       
     </li>
   <% end %>

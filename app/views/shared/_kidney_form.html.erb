@@ -1,0 +1,11 @@
+<%= form_for(@hospital) do |f|  %>
+<b>Kidney</b>
+<div class="form">
+<%= f.text_field :kidneydonor, placeholder: "Donor Name" %>
+<%= f.text_field :kidneybloodgroup, placeholder: "Bloodgroup" %>
+<%= f.text_field :kidneydonated_to, placeholder: "Donated to" %>
+<%= f.text_field :kidneybonemarrow, placeholder: "Bone marrow test" %>
+<%= f.text_field :kidneytissue_type, placeholder: "Crossmatching tissue type" %>
+</div>
+<%= f.submit "Add", class: "btn btn-danger" %>
+<% end %>
